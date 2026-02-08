@@ -1,12 +1,15 @@
 "use client";
 
+console.log($PWD)
+
 import { useState, useRef, useEffect } from "react";
-import styles from "./components/ChatBot.module.css";
+import styles from './ChatBot.module.css'
 
 interface Message {
     role: "user" | "assistant";
     content: string;
 }
+
 
 // Format AI response text
 const formatMessage = (text: string) => {
