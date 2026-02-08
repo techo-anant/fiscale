@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { Expense, Income, Goal, FixedCosts } from '@/types'
@@ -13,7 +13,7 @@ import GoalsTab from '@/components/GoalsTab'
 import TaxTab from '@/components/TaxTab'
 import OSAPTab from '@/components/OSAPTab'
 
-export default function DashboardPage() {
+function DashboardContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState('dashboard')
@@ -52,8 +52,8 @@ export default function DashboardPage() {
   const currentBalance = totalIncome - totalExpenses
   const savingsRate = totalIncome > 0 ? ((totalIncome - totalExpenses) / totalIncome * 100) : 0
 
-  const isLoaded = expensesLoaded && incomeLoaded && goalsLoaded && budgetLoaded && 
-                   fixedCostsLoaded && monthlyIncomeLoaded && savingsPercentLoaded
+  const isLoaded = expensesLoaded && incomeLoaded && goalsLoaded && budgetLoaded &&
+    fixedCostsLoaded && monthlyIncomeLoaded && savingsPercentLoaded
 
   // Show loading state
   if (!isLoaded) {
@@ -78,14 +78,14 @@ export default function DashboardPage() {
         <p className="page-subtitle">Track your finances and reach your goals</p>
       </div>
 
-      <QuickStats 
+      <QuickStats
         currentBalance={currentBalance}
         totalExpenses={totalExpenses}
         totalIncome={totalIncome}
         savingsRate={savingsRate}
       />
 
-  
+
       {activeTab === 'dashboard' && (
         <DashboardTab
           fixedCosts={fixedCosts}
@@ -126,5 +126,20 @@ export default function DashboardPage() {
 
       {activeTab === 'osap' && <OSAPTab />}
     </div>
+  )
+}
+
+export default function DashboardPage() {
+  return (
+    <Suspense fallback={
+      <div className="loading-container">
+        <div className="loading-content">
+          <div className="loading-icon">💰</div>
+          <div className="loading-text">Loading your financial data...</div>
+        </div>
+      </div>
+    }>
+      <DashboardContent />
+    </Suspense>
   )
 }
