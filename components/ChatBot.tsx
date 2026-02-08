@@ -1,7 +1,5 @@
 "use client";
 
-console.log($PWD)
-
 import { useState, useRef, useEffect } from "react";
 import styles from './ChatBot.module.css'
 
