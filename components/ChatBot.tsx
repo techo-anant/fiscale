@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import styles from './ChatBot.module.css'
 
 interface Message {
     role: "user" | "assistant";
@@ -104,12 +103,12 @@ export default function ChatBot() {
             {/* Floating Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={styles.floatingButton}
+                className="chatbot-floating-button"
                 aria-label="Toggle chat"
             >
                 {isOpen ? (
                     <svg
-                        className={styles.icon}
+                        className="chatbot-icon"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -123,7 +122,7 @@ export default function ChatBot() {
                     </svg>
                 ) : (
                     <svg
-                        className={styles.icon}
+                        className="chatbot-icon"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -140,13 +139,13 @@ export default function ChatBot() {
 
             {/* Chat Window */}
             {isOpen && (
-                <div className={styles.chatWindow}>
+                <div className="chatbot-window">
                     {/* Header */}
-                    <div className={styles.header}>
-                        <div className={styles.headerContent}>
-                            <div className={styles.avatar}>
+                    <div className="chatbot-header">
+                        <div className="chatbot-header-content">
+                            <div className="chatbot-avatar">
                                 <svg
-                                    className={styles.avatarIcon}
+                                    className="chatbot-avatar-icon"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -160,31 +159,31 @@ export default function ChatBot() {
                                 </svg>
                             </div>
                             <div>
-                                <h3 className={styles.headerTitle}>Financial Assistant</h3>
-                                <p className={styles.headerStatus}>Online</p>
+                                <h3 className="chatbot-header-title">Financial Assistant</h3>
+                                <p className="chatbot-header-status">Online</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Messages */}
-                    <div className={styles.messagesContainer}>
+                    <div className="chatbot-messages-container">
                         {messages.map((message, index) => (
                             <div key={index}>
                                 <div
                                     className={
                                         message.role === "user"
-                                            ? styles.messageWrapperUser
-                                            : styles.messageWrapperAssistant
+                                            ? "chatbot-message-wrapper-user"
+                                            : "chatbot-message-wrapper-assistant"
                                     }
                                 >
                                     <div
                                         className={
                                             message.role === "user"
-                                                ? styles.messageUser
-                                                : styles.messageAssistant
+                                                ? "chatbot-message-user"
+                                                : "chatbot-message-assistant"
                                         }
                                     >
-                                        <div className={styles.messageText}>
+                                        <div className="chatbot-message-text">
                                             {formatMessage(message.content)}
                                         </div>
                                     </div>
@@ -193,9 +192,9 @@ export default function ChatBot() {
                         ))}
 
                         {isLoading && (
-                            <div className={styles.messageWrapperAssistant}>
-                                <div className={styles.messageAssistant}>
-                                    <p className={styles.thinkingText}>Thinking...</p>
+                            <div className="chatbot-message-wrapper-assistant">
+                                <div className="chatbot-message-assistant">
+                                    <p className="chatbot-thinking-text">Thinking...</p>
                                 </div>
                             </div>
                         )}
@@ -203,24 +202,24 @@ export default function ChatBot() {
                     </div>
 
                     {/* Input */}
-                    <div className={styles.inputContainer}>
-                        <div className={styles.inputWrapper}>
+                    <div className="chatbot-input-container">
+                        <div className="chatbot-input-wrapper">
                             <input
                                 type="text"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 onKeyPress={handleKeyPress}
                                 placeholder="Ask me anything..."
-                                className={styles.input}
+                                className="chatbot-input"
                                 disabled={isLoading}
                             />
                             <button
                                 onClick={sendMessage}
                                 disabled={isLoading || !input.trim()}
-                                className={styles.sendButton}
+                                className="chatbot-send-button"
                             >
                                 <svg
-                                    className={styles.sendIcon}
+                                    className="chatbot-send-icon"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"

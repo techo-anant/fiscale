@@ -23,8 +23,6 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log("API kek fetched")
-
     const ai = new GoogleGenAI({ apiKey });
 
     // Build conversation context

@@ -37,7 +37,7 @@ export default function AboutPage() {
               <div className="about-feature-icon">📊</div>
               <h3 className="about-feature-title">Expense Tracking</h3>
               <p className="about-feature-text">
-                Track every dollar and see exactly where your money goes each month. 
+                Track every dollar and see exactly where your money goes each month.
               </p>
             </div>
 

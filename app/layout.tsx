@@ -21,7 +21,7 @@ export default function RootLayout({
       <body>
         <Taskbar />
         <main className="main-content">{children}</main>
-        {/* <ChatBot /> */}
+        <ChatBot />
         <Footer />
       </body>
     </html>
