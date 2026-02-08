@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import "./ChatBot.css";
+import styles from "./ChatBot.module.css";
 
 interface Message {
     role: "user" | "assistant";
