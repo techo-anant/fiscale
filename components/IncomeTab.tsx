@@ -27,7 +27,7 @@ export default function IncomeTab({ income, setIncome }: IncomeTabProps) {
     }
 
     setIncome([newIncome, ...income])
-    
+
     setSource('')
     setAmount('')
     setDate(new Date().toISOString().split('T')[0])
@@ -44,7 +44,7 @@ export default function IncomeTab({ income, setIncome }: IncomeTabProps) {
           <span className="card-title">Add Income</span>
           <span className="card-icon">💰</span>
         </div>
-        
+
         <div className="input-group">
           <label>Source</label>
           <input
@@ -85,7 +85,7 @@ export default function IncomeTab({ income, setIncome }: IncomeTabProps) {
           <span className="card-title">Income History</span>
           <span className="card-icon">📊</span>
         </div>
-        
+
         {income.length === 0 ? (
           <div className="empty-state">
             <div className="empty-state-icon">💰</div>

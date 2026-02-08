@@ -69,7 +69,7 @@ export default function TaxTab() {
           <p style={{ color: '#b4b4b4', fontSize: '0.95em', marginBottom: '20px' }}>
             Your T4 is the tax form from your employer. Find these boxes on your T4 slip:
           </p>
-          
+
           <div className="input-group">
             <label>Box 14 - Employment Income 💼</label>
             <div style={{ fontSize: '0.9em', color: '#b4b4b4', marginBottom: '8px' }}>
@@ -132,7 +132,7 @@ export default function TaxTab() {
           <p style={{ color: '#b4b4b4', fontSize: '0.95em', marginBottom: '20px' }}>
             Your T2202 shows your tuition. Get it from your school portal:
           </p>
-          
+
           <div className="input-group">
             <label>Box A - Tuition Fees Paid 📚</label>
             <div style={{ fontSize: '0.9em', color: '#b4b4b4', marginBottom: '8px' }}>
@@ -163,7 +163,7 @@ export default function TaxTab() {
 
         <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '20px', borderRadius: '12px', marginBottom: '25px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
           <h3 style={{ color: '#4fd1c5', marginBottom: '15px', fontSize: '1.2em' }}>🏠 Part 3: Other Info</h3>
-          
+
           <div className="input-group">
             <label>What Province Do You Live In? 🗺️</label>
             <select value={province} onChange={(e) => setProvince(e.target.value)}>
@@ -199,8 +199,8 @@ export default function TaxTab() {
           </div>
         </div>
 
-        <button 
-          className="btn btn-primary" 
+        <button
+          className="btn btn-primary"
           onClick={handleCalculate}
           style={{ fontSize: '1.1em', padding: '15px' }}
         >
@@ -217,7 +217,7 @@ export default function TaxTab() {
 
           <div style={{ background: 'rgba(79, 209, 197, 0.1)', padding: '20px', borderRadius: '12px', marginBottom: '20px', border: '2px solid #4fd1c5' }}>
             <h3 style={{ color: '#4fd1c5', marginBottom: '15px' }}>💰 Tax Calculation Results</h3>
-            
+
             <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '20px', borderRadius: '12px', marginBottom: '20px' }}>
               <h3 style={{ color: '#4fd1c5', marginBottom: '15px' }}>💼 Income Breakdown</h3>
               <div className="stat-row">
@@ -309,9 +309,9 @@ export default function TaxTab() {
                 <span className="stat-label" style={{ fontSize: '1.2em', fontWeight: 'bold' }}>
                   {results.refundOrOwing >= 0 ? '💰 Your Refund' : '⚠️ You Owe'}
                 </span>
-                <span className="stat-value" style={{ 
-                  fontSize: '1.5em', 
-                  color: results.refundOrOwing >= 0 ? '#10b981' : '#f59e0b' 
+                <span className="stat-value" style={{
+                  fontSize: '1.5em',
+                  color: results.refundOrOwing >= 0 ? '#10b981' : '#f59e0b'
                 }}>
                   {results.refundOrOwing >= 0 ? '+' : ''}${Math.abs(results.refundOrOwing).toFixed(2)}
                 </span>

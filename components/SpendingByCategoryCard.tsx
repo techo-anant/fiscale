@@ -12,7 +12,7 @@ export default function SpendingByCategoryCard({
   totalExpenses
 }: SpendingByCategoryCardProps) {
   // Calculate category breakdown
-  const categoryTotals: {[key: string]: number} = {}
+  const categoryTotals: { [key: string]: number } = {}
   expenses.forEach(exp => {
     categoryTotals[exp.category] = (categoryTotals[exp.category] || 0) + exp.amount
   })
@@ -23,7 +23,7 @@ export default function SpendingByCategoryCard({
         <span className="card-title">Spending by Category</span>
         <span className="card-icon">🏷️</span>
       </div>
-      
+
       {Object.keys(categoryTotals).length > 0 ? (
         <div>
           {Object.entries(categoryTotals).map(([category, amount]) => {

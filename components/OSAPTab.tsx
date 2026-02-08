@@ -34,7 +34,7 @@ export default function OSAPTab() {
           <span className="card-title">OSAP Estimator</span>
           <span className="card-icon">🎓</span>
         </div>
-        
+
         <div className="input-group">
           <label>Student Status</label>
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
@@ -117,7 +117,7 @@ export default function OSAPTab() {
             <span className="card-title">OSAP Estimate</span>
             <span className="card-icon">💰</span>
           </div>
-          
+
           <div style={{ background: 'rgba(79, 209, 197, 0.1)', padding: '20px', borderRadius: '10px', marginBottom: '20px', border: '2px solid #4fd1c5' }}>
             <div style={{ fontSize: '1.1em', color: '#b4b4b4', marginBottom: '10px' }}>
               Estimated Total OSAP
@@ -159,7 +159,7 @@ export default function OSAPTab() {
             </span>
             <span className="stat-value">${results.livingCosts.toFixed(2)}</span>
           </div>
-          
+
           <div className="stat-row" style={{ marginTop: '15px' }}>
             <span className="stat-label">Your Resources</span>
             <span className="stat-value expense-negative">-${results.totalResources.toFixed(2)}</span>
@@ -199,17 +199,17 @@ export default function OSAPTab() {
         </div>
         <div className="insights">
           <div style={{ fontWeight: 'bold', fontSize: '1.2em', marginBottom: '15px' }}>📖 Essential OSAP Info</div>
-          
+
           <div className="insight-item">
             <strong>🗓️ Application Timeline</strong><br />
             Apply 60 days before your study period begins. OSAP opens in May for fall/winter studies.
           </div>
-          
+
           <div className="insight-item">
             <strong>💵 Grant vs Loan</strong><br />
             Up to 60% of OSAP is grants (don&apos;t repay). The rest is loans (repay after graduation).
           </div>
-          
+
           <div className="insight-item">
             <strong>📊 Eligibility</strong><br />
             • Canadian citizen/PR/protected person<br />
@@ -217,19 +217,19 @@ export default function OSAPTab() {
             • Enrolled in approved program<br />
             • Pass credit check
           </div>
-          
+
           <div className="insight-item">
             <strong>💰 Funding Limits (2024-25)</strong><br />
             • Single students: up to $18,020/year<br />
             • Married/dependent: up to $22,140/year<br />
             • Lifetime limit: 340 weeks for undergrad
           </div>
-          
+
           <div className="insight-item">
             <strong>🎯 Repayment Grace Period</strong><br />
             You don&apos;t start repaying until 6 months after graduation. Interest-free during grace period!
           </div>
-          
+
           <div className="insight-item">
             <strong>📝 Required Documents</strong><br />
             • Social Insurance Number<br />
@@ -237,12 +237,12 @@ export default function OSAPTab() {
             • Parental income (if dependent)<br />
             • Bank account details
           </div>
-          
+
           <div className="insight-item">
             <strong>🔄 RAP (Repayment Assistance)</strong><br />
             If you&apos;re struggling to repay, RAP can reduce/pause payments based on your income and family size.
           </div>
-          
+
           <div className="insight-item">
             <strong>⚠️ Important Notes</strong><br />
             • Maintain 60% course load minimum<br />
@@ -250,7 +250,7 @@ export default function OSAPTab() {
             • Withdraw from courses? Must report immediately<br />
             • Keep grades up - academic probation affects funding
           </div>
-          
+
           <div className="insight-item">
             <strong>🔗 Official Resources</strong><br />
             • Apply: ontario.ca/osap<br />

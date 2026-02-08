@@ -37,7 +37,7 @@ export default function ExpensesTab({ expenses, setExpenses }: ExpensesTabProps)
     }
 
     setExpenses([newExpense, ...expenses])
-    
+
     setDescription('')
     setAmount('')
     setDate(new Date().toISOString().split('T')[0])
@@ -62,7 +62,7 @@ export default function ExpensesTab({ expenses, setExpenses }: ExpensesTabProps)
           <span className="card-title">Add Expense</span>
           <span className="card-icon">➕</span>
         </div>
-        
+
         <div className="input-group">
           <label>Description</label>
           <input
@@ -112,7 +112,7 @@ export default function ExpensesTab({ expenses, setExpenses }: ExpensesTabProps)
           <span className="card-title">Recent Expenses</span>
           <span className="card-icon">📝</span>
         </div>
-        
+
         {expenses.length === 0 ? (
           <div className="empty-state">
             <div className="empty-state-icon">📝</div>

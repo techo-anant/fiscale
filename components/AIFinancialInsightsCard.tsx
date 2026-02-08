@@ -24,12 +24,12 @@ export default function AIFinancialInsightsCard({
   const savingsRate = monthlyIncome > 0 ? (savingsAmount / monthlyIncome) * 100 : 0
 
   return (
-    <div className="card">
+    <div className="card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <div className="card-header">
-        <span className="card-title">AI Financial Insights</span>
+        <span className="card-title">Financial Insights</span>
         <span className="card-icon">🤖</span>
       </div>
-      <div className="insights">
+      <div className="insights" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: '' }}>
         {totalExpenses === 0 ? (
           <div className="insight-item">💡 Track your expenses to get personalized insights!</div>
         ) : (
@@ -41,7 +41,7 @@ export default function AIFinancialInsightsCard({
               <div className="insight-item">🎉 Great job! You're saving {savingsRate.toFixed(1)}% of your income!</div>
             )}
             {totalFixedCosts > monthlyIncome * 0.5 && monthlyIncome > 0 && (
-              <div className="insight-item">💡 Your fixed costs are {((totalFixedCosts/monthlyIncome)*100).toFixed(0)}% of your income. Try to keep this under 50%.</div>
+              <div className="insight-item">💡 Your fixed costs are {((totalFixedCosts / monthlyIncome) * 100).toFixed(0)}% of your income. Try to keep this under 50%.</div>
             )}
             {availableToSpend < 0 && (
               <div className="insight-item">⚠️ You're spending more than you earn. Review your fixed costs and look for ways to increase income.</div>

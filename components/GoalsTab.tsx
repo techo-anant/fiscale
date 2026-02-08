@@ -29,7 +29,7 @@ export default function GoalsTab({ goals, setGoals }: GoalsTabProps) {
     }
 
     setGoals([...goals, newGoal])
-    
+
     setName('')
     setTargetAmount('')
     setCurrentAmount('')
@@ -47,7 +47,7 @@ export default function GoalsTab({ goals, setGoals }: GoalsTabProps) {
           <span className="card-title">Create Savings Goal</span>
           <span className="card-icon">🎯</span>
         </div>
-        
+
         <div className="input-group">
           <label>Goal Name</label>
           <input
@@ -99,7 +99,7 @@ export default function GoalsTab({ goals, setGoals }: GoalsTabProps) {
           <span className="card-title">Your Goals</span>
           <span className="card-icon">🏆</span>
         </div>
-        
+
         {goals.length === 0 ? (
           <div className="empty-state">
             <div className="empty-state-icon">🎯</div>
@@ -111,7 +111,7 @@ export default function GoalsTab({ goals, setGoals }: GoalsTabProps) {
             {goals.map(goal => {
               const progress = (goal.currentAmount / goal.targetAmount) * 100
               const remaining = goal.targetAmount - goal.currentAmount
-              
+
               return (
                 <div key={goal.id} className="goal-item">
                   <div className="goal-details" style={{ width: '100%' }}>
@@ -121,18 +121,18 @@ export default function GoalsTab({ goals, setGoals }: GoalsTabProps) {
                         Delete
                       </button>
                     </div>
-                    
+
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px', fontSize: '0.9em', color: '#b4b4b4' }}>
                       <span>${goal.currentAmount.toFixed(2)} saved</span>
                       <span>Goal: ${goal.targetAmount.toFixed(2)}</span>
                     </div>
-                    
+
                     <div className="progress-bar" style={{ marginBottom: '10px' }}>
                       <div className="progress-fill" style={{ width: `${Math.min(progress, 100)}%` }}>
                         {progress.toFixed(0)}%
                       </div>
                     </div>
-                    
+
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9em' }}>
                       <span style={{ color: remaining > 0 ? '#f59e0b' : '#10b981' }}>
                         {remaining > 0 ? `$${remaining.toFixed(2)} to go` : 'Goal reached! 🎉'}

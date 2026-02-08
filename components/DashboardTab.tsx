@@ -25,12 +25,14 @@ interface DashboardTabProps {
 
 // Loading skeleton component
 const CardSkeleton = () => (
-  <div className="card" style={{ 
-    background: 'rgba(255, 255, 255, 0.05)', 
-    animation: 'pulse 1.5s ease-in-out infinite' 
+  <div className="card loading" style={{
+    minHeight: '200px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }}>
-    <div style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ color: '#4fd1c5', fontSize: '1.2em' }}>Loading...</div>
+    <div style={{ color: 'var(--primary)', fontSize: '18px', fontWeight: '600' }}>
+      Loading...
     </div>
   </div>
 )
@@ -49,52 +51,63 @@ export default function DashboardTab({
 }: DashboardTabProps) {
   return (
     <div className="dashboard">
-      {/* 1. Fixed Costs Card */}
-      <Suspense fallback={<CardSkeleton />}>
-        <FixedCostsCard
-          fixedCosts={fixedCosts}
-          setFixedCosts={setFixedCosts}
-        />
-      </Suspense>
+      {/* Available Funds Calculator - Full Width Priority */}
+      <div className="card-full">
+        <Suspense fallback={<CardSkeleton />}>
+          <AvailableFundsCalculator
+            fixedCosts={fixedCosts}
+            monthlyIncome={monthlyIncome}
+            setMonthlyIncome={setMonthlyIncome}
+            savingsPercent={savingsPercent}
+            setSavingsPercent={setSavingsPercent}
+          />
+        </Suspense>
+      </div>
 
-      {/* 2. Available Funds Calculator */}
-      <Suspense fallback={<CardSkeleton />}>
-        <AvailableFundsCalculator
-          fixedCosts={fixedCosts}
-          monthlyIncome={monthlyIncome}
-          setMonthlyIncome={setMonthlyIncome}
-          savingsPercent={savingsPercent}
-          setSavingsPercent={setSavingsPercent}
-        />
-      </Suspense>
+      {/* Fixed Costs Card - Medium */}
+      <div className="card-medium">
+        <Suspense fallback={<CardSkeleton />}>
+          <FixedCostsCard
+            fixedCosts={fixedCosts}
+            setFixedCosts={setFixedCosts}
+          />
+        </Suspense>
+      </div>
 
-      {/* 3. Budget Overview */}
-      <Suspense fallback={<CardSkeleton />}>
-        <BudgetOverviewCard
-          monthlyBudget={monthlyBudget}
-          setMonthlyBudget={setMonthlyBudget}
-          totalExpenses={totalExpenses}
-        />
-      </Suspense>
+      {/* Right Column: Budget Overview + AI Insights - Medium */}
+      <div className="card-medium" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <Suspense fallback={<CardSkeleton />}>
+          <BudgetOverviewCard
+            monthlyBudget={monthlyBudget}
+            setMonthlyBudget={setMonthlyBudget}
+            totalExpenses={totalExpenses}
+          />
+        </Suspense>
 
-      {/* 4. Spending by Category */}
-      <Suspense fallback={<CardSkeleton />}>
-        <SpendingByCategoryCard
-          expenses={expenses}
-          totalExpenses={totalExpenses}
-        />
-      </Suspense>
+        <div style={{ flex: 1, display: 'flex' }}>
+          <Suspense fallback={<CardSkeleton />}>
+            <div style={{ width: '100%' }}>
+              <AIFinancialInsightsCard
+                totalExpenses={totalExpenses}
+                monthlyBudget={monthlyBudget}
+                monthlyIncome={monthlyIncome}
+                savingsPercent={savingsPercent}
+                fixedCosts={fixedCosts}
+              />
+            </div>
+          </Suspense>
+        </div>
+      </div>
 
-      {/* 5. AI Financial Insights */}
-      <Suspense fallback={<CardSkeleton />}>
-        <AIFinancialInsightsCard
-          totalExpenses={totalExpenses}
-          monthlyBudget={monthlyBudget}
-          monthlyIncome={monthlyIncome}
-          savingsPercent={savingsPercent}
-          fixedCosts={fixedCosts}
-        />
-      </Suspense>
+      {/* Spending by Category - Full Width Below */}
+      <div className="card-full">
+        <Suspense fallback={<CardSkeleton />}>
+          <SpendingByCategoryCard
+            expenses={expenses}
+            totalExpenses={totalExpenses}
+          />
+        </Suspense>
+      </div>
     </div>
   )
 }

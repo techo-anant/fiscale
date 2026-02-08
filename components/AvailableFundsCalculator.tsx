@@ -24,176 +24,195 @@ export default function AvailableFundsCalculator({
   return (
     <div className="card">
       <div className="card-header">
-        <span className="card-title">Available Funds Calculator 💰</span>
-        <span className="card-icon">🧮</span>
-      </div>
-      
-      <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '20px', borderRadius: '12px', marginBottom: '20px', border: '2px solid #10b981' }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.95em', color: '#b4b4b4', marginBottom: '8px' }}>
-            💵 Money You Can Spend This Month
-          </div>
-          <div 
-            style={{ 
-              fontSize: '2.8em', 
-              fontWeight: 'bold', 
-              color: availableToSpend >= 0 ? '#10b981' : '#ef4444' 
-            }}
-          >
-            ${availableToSpend.toFixed(2)}
-          </div>
-          <div style={{ fontSize: '0.9em', color: '#b4b4b4', marginTop: '10px' }}>
-            After fixed costs & savings
-          </div>
-        </div>
+        <span className="card-title">Available Funds Calculator</span>
+        <span className="card-icon">💰</span>
       </div>
 
-      <div className="input-group">
-        <label>💵 Monthly Income (After Tax)</label>
-        <div style={{ fontSize: '0.9em', color: '#b4b4b4', marginBottom: '8px' }}>
-          Your total monthly income from all sources
+      <div style={{ marginBottom: '28px' }}>
+        {/* Main Available Funds Display */}
+        <div style={{
+          background: 'var(--background-light)',
+          padding: '24px 28px',
+          borderRadius: 'var(--radius-lg)',
+          border: '1px solid var(--border)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <div>
+            <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '8px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              Available to spend
+            </div>
+            <div
+              style={{
+                fontSize: '42px',
+                fontWeight: '700',
+                color: availableToSpend >= 0 ? '#10b981' : '#ef4444',
+                fontFamily: "'Space Grotesk', sans-serif",
+                letterSpacing: '-1px',
+                lineHeight: '1'
+              }}
+            >
+              ${availableToSpend.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </div>
+            <div style={{ fontSize: '13px', color: 'var(--text-secondary)', fontWeight: '500', marginTop: '6px' }}>
+              After fixed costs & savings
+            </div>
+          </div>
+
+          {/* Quick breakdown on the right */}
+          <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
+              <span style={{ color: 'var(--text-muted)', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Income: </span>
+              <span style={{ color: 'var(--success)', fontWeight: '600' }}>
+                ${monthlyIncome.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+              </span>
+            </div>
+            <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
+              <span style={{ color: 'var(--text-muted)', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Fixed: </span>
+              <span style={{ color: 'var(--danger)', fontWeight: '600' }}>
+                -${totalFixedCosts.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+              </span>
+            </div>
+            {savingsAmount > 0 && (
+              <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
+                <span style={{ color: 'var(--text-muted)', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Savings: </span>
+                <span style={{ color: 'var(--primary)', fontWeight: '600' }}>
+                  -${savingsAmount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
-        <input
-          type="number"
-          value={monthlyIncome || ''}
-          onChange={(e) => setMonthlyIncome(parseFloat(e.target.value) || 0)}
-          placeholder="e.g., 2500"
-          step="50"
-        />
+
+        {/* Alert message if needed */}
+        {availableToSpend < 0 && (
+          <div style={{
+            background: 'rgba(239, 68, 68, 0.1)',
+            padding: '12px 16px',
+            borderRadius: 'var(--radius-sm)',
+            marginTop: '12px',
+            border: '1px solid rgba(239, 68, 68, 0.3)',
+            fontSize: '13px',
+            color: 'var(--text-secondary)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}>
+            <span style={{ color: 'var(--danger)' }}>⚠️</span>
+            Your expenses exceed your income. Consider reducing costs or finding additional income.
+          </div>
+        )}
+        {availableToSpend >= 0 && availableToSpend < 200 && (
+          <div style={{
+            background: 'rgba(245, 158, 11, 0.1)',
+            padding: '12px 16px',
+            borderRadius: 'var(--radius-sm)',
+            marginTop: '12px',
+            border: '1px solid rgba(245, 158, 11, 0.3)',
+            fontSize: '13px',
+            color: 'var(--text-secondary)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}>
+            <span style={{ color: 'var(--warning)' }}>💡</span>
+            Less than $200 available. Budget carefully for essentials.
+          </div>
+        )}
       </div>
 
-      <div className="input-group">
-        <label>🎯 Savings Goal (% to save)</label>
-        <div style={{ fontSize: '0.9em', color: '#b4b4b4', marginBottom: '8px' }}>
-          Recommended: 10-20% of income
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px', marginBottom: '28px' }}>
+        <div className="input-group" style={{ marginBottom: 0 }}>
+          <label>Monthly Income (After Tax)</label>
+          <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '8px' }}>
+            Total monthly income from all sources
+          </div>
+          <input
+            type="number"
+            value={monthlyIncome || ''}
+            onChange={(e) => setMonthlyIncome(parseFloat(e.target.value) || 0)}
+            placeholder="e.g., 2500"
+            step="50"
+          />
         </div>
-        <select value={savingsPercent} onChange={(e) => setSavingsPercent(parseInt(e.target.value))}>
-          <option value="0">0% - No savings</option>
-          <option value="5">5% - Getting started</option>
-          <option value="10">10% - Good habit</option>
-          <option value="15">15% - Recommended</option>
-          <option value="20">20% - Excellent!</option>
-          <option value="25">25% - Aggressive saver</option>
-          <option value="30">30% - Super saver!</option>
-        </select>
+
+        <div className="input-group" style={{ marginBottom: 0 }}>
+          <label>Savings Goal (%)</label>
+          <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '8px' }}>
+            Recommended: 10-20% of income
+          </div>
+          <select value={savingsPercent} onChange={(e) => setSavingsPercent(parseInt(e.target.value))}>
+            <option value="0">0% - No savings</option>
+            <option value="5">5% - Getting started</option>
+            <option value="10">10% - Good habit</option>
+            <option value="15">15% - Recommended</option>
+            <option value="20">20% - Excellent!</option>
+            <option value="25">25% - Aggressive saver</option>
+            <option value="30">30% - Super saver!</option>
+          </select>
+        </div>
       </div>
 
       {monthlyIncome > 0 && (
-        <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '20px', borderRadius: '12px', marginTop: '20px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-          <h3 style={{ color: '#4fd1c5', marginBottom: '15px', fontSize: '1.1em' }}>📊 Monthly Breakdown</h3>
-          
-          <div className="stat-row">
-            <span className="stat-label">💵 Monthly Income</span>
-            <span className="stat-value expense-positive">+${monthlyIncome.toFixed(2)}</span>
-          </div>
+        <div style={{
+          background: 'var(--background-light)',
+          padding: '24px',
+          borderRadius: 'var(--radius-lg)',
+          border: '1px solid var(--border)'
+        }}>
+          <h3 style={{
+            color: 'var(--text-primary)',
+            marginBottom: '20px',
+            fontSize: '16px',
+            fontWeight: '600',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px'
+          }}>
+            Detailed Breakdown
+          </h3>
 
-          <div style={{ height: '2px', background: 'rgba(255, 255, 255, 0.1)', margin: '15px 0' }}></div>
-
-          <div style={{ margin: '15px 0' }}>
-            <div style={{ color: '#ef4444', fontWeight: 600, marginBottom: '10px' }}>💸 Fixed Costs</div>
+          <div style={{ margin: '20px 0' }}>
+            <div style={{ color: 'var(--text-secondary)', fontWeight: '600', marginBottom: '12px', fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              Fixed Costs
+            </div>
             {fixedCosts.rent > 0 && (
-              <div className="stat-row" style={{ background: 'transparent', padding: '8px 0' }}>
-                <span className="stat-label" style={{ paddingLeft: '15px', fontSize: '0.95em' }}>🏠 Rent</span>
-                <span className="stat-value expense-negative" style={{ fontSize: '0.95em' }}>
-                  -${fixedCosts.rent.toFixed(2)}
-                </span>
+              <div className="stat-row" style={{ background: 'transparent', padding: '10px 0', margin: '6px 0' }}>
+                <span className="stat-label" style={{ paddingLeft: '16px', fontSize: '14px' }}>Rent</span>
+                <span className="stat-value expense-negative">-${fixedCosts.rent.toFixed(2)}</span>
               </div>
             )}
             {fixedCosts.carInsurance > 0 && (
-              <div className="stat-row" style={{ background: 'transparent', padding: '8px 0' }}>
-                <span className="stat-label" style={{ paddingLeft: '15px', fontSize: '0.95em' }}>🚗 Car Insurance</span>
-                <span className="stat-value expense-negative" style={{ fontSize: '0.95em' }}>
-                  -${fixedCosts.carInsurance.toFixed(2)}
-                </span>
+              <div className="stat-row" style={{ background: 'transparent', padding: '10px 0', margin: '6px 0' }}>
+                <span className="stat-label" style={{ paddingLeft: '16px', fontSize: '14px' }}>Car Insurance</span>
+                <span className="stat-value expense-negative">-${fixedCosts.carInsurance.toFixed(2)}</span>
               </div>
             )}
             {fixedCosts.groceries > 0 && (
-              <div className="stat-row" style={{ background: 'transparent', padding: '8px 0' }}>
-                <span className="stat-label" style={{ paddingLeft: '15px', fontSize: '0.95em' }}>🛒 Groceries</span>
-                <span className="stat-value expense-negative" style={{ fontSize: '0.95em' }}>
-                  -${fixedCosts.groceries.toFixed(2)}
-                </span>
+              <div className="stat-row" style={{ background: 'transparent', padding: '10px 0', margin: '6px 0' }}>
+                <span className="stat-label" style={{ paddingLeft: '16px', fontSize: '14px' }}>Groceries</span>
+                <span className="stat-value expense-negative">-${fixedCosts.groceries.toFixed(2)}</span>
               </div>
             )}
             {fixedCosts.phone > 0 && (
-              <div className="stat-row" style={{ background: 'transparent', padding: '8px 0' }}>
-                <span className="stat-label" style={{ paddingLeft: '15px', fontSize: '0.95em' }}>📱 Phone</span>
-                <span className="stat-value expense-negative" style={{ fontSize: '0.95em' }}>
-                  -${fixedCosts.phone.toFixed(2)}
-                </span>
+              <div className="stat-row" style={{ background: 'transparent', padding: '10px 0', margin: '6px 0' }}>
+                <span className="stat-label" style={{ paddingLeft: '16px', fontSize: '14px' }}>Phone</span>
+                <span className="stat-value expense-negative">-${fixedCosts.phone.toFixed(2)}</span>
               </div>
             )}
             {fixedCosts.utilities > 0 && (
-              <div className="stat-row" style={{ background: 'transparent', padding: '8px 0' }}>
-                <span className="stat-label" style={{ paddingLeft: '15px', fontSize: '0.95em' }}>💡 Utilities</span>
-                <span className="stat-value expense-negative" style={{ fontSize: '0.95em' }}>
-                  -${fixedCosts.utilities.toFixed(2)}
-                </span>
+              <div className="stat-row" style={{ background: 'transparent', padding: '10px 0', margin: '6px 0' }}>
+                <span className="stat-label" style={{ paddingLeft: '16px', fontSize: '14px' }}>Utilities</span>
+                <span className="stat-value expense-negative">-${fixedCosts.utilities.toFixed(2)}</span>
               </div>
             )}
             {fixedCosts.other > 0 && (
-              <div className="stat-row" style={{ background: 'transparent', padding: '8px 0' }}>
-                <span className="stat-label" style={{ paddingLeft: '15px', fontSize: '0.95em' }}>➕ Other</span>
-                <span className="stat-value expense-negative" style={{ fontSize: '0.95em' }}>
-                  -${fixedCosts.other.toFixed(2)}
-                </span>
+              <div className="stat-row" style={{ background: 'transparent', padding: '10px 0', margin: '6px 0' }}>
+                <span className="stat-label" style={{ paddingLeft: '16px', fontSize: '14px' }}>Other</span>
+                <span className="stat-value expense-negative">-${fixedCosts.other.toFixed(2)}</span>
               </div>
             )}
-            <div className="stat-row" style={{ background: 'rgba(239, 68, 68, 0.1)', marginTop: '5px' }}>
-              <span className="stat-label" style={{ fontWeight: 'bold' }}>Total Fixed Costs</span>
-              <span className="stat-value expense-negative" style={{ fontSize: '1.1em' }}>
-                -${totalFixedCosts.toFixed(2)}
-              </span>
-            </div>
           </div>
-
-          {savingsAmount > 0 && (
-            <div className="stat-row">
-              <span className="stat-label">🎯 Savings ({savingsPercent}%)</span>
-              <span className="stat-value expense-negative">-${savingsAmount.toFixed(2)}</span>
-            </div>
-          )}
-
-          <div style={{ height: '2px', background: 'linear-gradient(90deg, transparent, #4fd1c5, transparent)', margin: '20px 0' }}></div>
-
-          <div className="stat-row" style={{ 
-            background: availableToSpend >= 0 ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)', 
-            border: `2px solid ${availableToSpend >= 0 ? '#10b981' : '#ef4444'}`,
-            padding: '15px'
-          }}>
-            <span className="stat-label" style={{ fontSize: '1.2em', fontWeight: 'bold' }}>
-              💰 Available to Spend
-            </span>
-            <span className="stat-value" style={{ 
-              fontSize: '1.5em', 
-              color: availableToSpend >= 0 ? '#10b981' : '#ef4444' 
-            }}>
-              ${availableToSpend.toFixed(2)}
-            </span>
-          </div>
-
-          {availableToSpend < 0 ? (
-            <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '15px', borderRadius: '8px', marginTop: '15px', borderLeft: '4px solid #ef4444' }}>
-              <strong style={{ color: '#ef4444' }}>⚠️ Warning:</strong>
-              <div style={{ color: '#b4b4b4', marginTop: '5px', fontSize: '0.95em' }}>
-                Your expenses are higher than your income! Try reducing fixed costs, lowering your savings goal temporarily, or finding ways to increase income.
-              </div>
-            </div>
-          ) : availableToSpend < 200 ? (
-            <div style={{ background: 'rgba(245, 158, 11, 0.1)', padding: '15px', borderRadius: '8px', marginTop: '15px', borderLeft: '4px solid #f59e0b' }}>
-              <strong style={{ color: '#f59e0b' }}>💡 Heads Up:</strong>
-              <div style={{ color: '#b4b4b4', marginTop: '5px', fontSize: '0.95em' }}>
-                You have less than $200 to spend this month. Budget carefully for food, entertainment, and emergencies!
-              </div>
-            </div>
-          ) : (
-            <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '15px', borderRadius: '8px', marginTop: '15px', borderLeft: '4px solid #10b981' }}>
-              <strong style={{ color: '#10b981' }}>✅ Great Job!</strong>
-              <div style={{ color: '#b4b4b4', marginTop: '5px', fontSize: '0.95em' }}>
-                You have ${availableToSpend.toFixed(2)} available for food, entertainment, shopping, and emergencies. Keep track of your spending!
-              </div>
-            </div>
-          )}
         </div>
       )}
     </div>
