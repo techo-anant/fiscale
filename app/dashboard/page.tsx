@@ -4,14 +4,15 @@ import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { Expense, Income, Goal, FixedCosts } from '@/types'
+
 import QuickStats from '@/components/QuickStats'
-import TabNavigation from '@/components/TabNavigation'
 import DashboardTab from '@/components/DashboardTab'
 import ExpensesTab from '@/components/ExpensesTab'
 import IncomeTab from '@/components/IncomeTab'
 import GoalsTab from '@/components/GoalsTab'
 import TaxTab from '@/components/TaxTab'
 import OSAPTab from '@/components/OSAPTab'
+import AnimatedChartIcon from '@/components/AnimatedChartIcon'
 
 function DashboardContent() {
   const router = useRouter()
@@ -60,7 +61,7 @@ function DashboardContent() {
     return (
       <div className="loading-container">
         <div className="loading-content">
-          <div className="loading-icon">💰</div>
+          <div className="loading-icon"><AnimatedChartIcon /></div>
           <div className="loading-text">Loading your financial data...</div>
         </div>
       </div>
@@ -134,7 +135,7 @@ export default function DashboardPage() {
     <Suspense fallback={
       <div className="loading-container">
         <div className="loading-content">
-          <div className="loading-icon">💰</div>
+          <div className="loading-icon"><AnimatedChartIcon /></div>
           <div className="loading-text">Loading your financial data...</div>
         </div>
       </div>

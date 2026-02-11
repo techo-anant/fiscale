@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 html {
@@ -77,7 +78,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 3rem;
+  padding: 1rem 3rem;
   max-width: 1600px;
   margin: 0 auto;
 }
@@ -87,6 +88,22 @@ body {
   /* set width */
   height: auto;
   /* set height */
+}
+
+/* Hamburger Menu Button */
+.hamburger-menu {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--text-primary);
+  z-index: 101;
+}
+
+.hamburger-menu svg {
+  width: 28px;
+  height: 28px;
 }
 
 .nav-links {
@@ -107,6 +124,10 @@ body {
 
 .nav-links a:hover {
   color: var(--secondary-color);
+}
+
+.nav-links a.active {
+  font-weight: 600;
 }
 
 .nav-actions {
@@ -516,6 +537,7 @@ body {
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
   margin-bottom: 32px;
+  max-width: 100%;
 }
 
 .card {
@@ -559,6 +581,20 @@ body {
 
   .card-small {
     grid-column: span 6;
+  }
+}
+
+/* Mobile: collapse dashboard to single column */
+@media (max-width: 767px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .card-full,
+  .card-large,
+  .card-medium,
+  .card-small {
+    grid-column: span 1;
   }
 }
 
@@ -929,7 +965,7 @@ body {
    RESPONSIVE DESIGN
    ============================================ */
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .taskbar-container {
     padding: 1rem 2rem;
   }
@@ -971,7 +1007,7 @@ body {
   .container {
     padding: 16px;
   }
-}
+} */
 
 @media (max-width: 640px) {
   .taskbar-container {
@@ -1533,7 +1569,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 50;
+  z-index: 150;
   transition: all 0.3s ease;
 }
 
@@ -1562,7 +1598,7 @@ body {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  z-index: 50;
+  z-index: 150;
   overflow: hidden;
 }
 
@@ -1791,4 +1827,224 @@ body {
 
 .chatbot-messages-container::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Mobile: 768px and below */
+@media (max-width: 768px) {
+
+  /* Taskbar Mobile Styles */
+  .taskbar-container {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .logo {
+    width: 8rem;
+  }
+
+  /* Show hamburger menu on mobile */
+  .hamburger-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hide nav links by default on mobile */
+  .nav-links {
+    position: fixed;
+    top: 5.5rem;
+    left: 0;
+    right: 0;
+    /* background-color: var(--surface); */
+    background-color: var(--surface);
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+  }
+
+  /* Show nav links when menu is open */
+  .nav-links-open {
+    display: flex !important;
+  }
+
+  /* Menu overlay */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 98;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .nav-links li {
+    width: 100%;
+    display: block;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+  }
+
+  .nav-links li:last-child a {
+    border-bottom: none;
+  }
+
+  .nav-links a:active {
+    background-color: var(--surface-hover);
+    color: var(--secondary-color)
+  }
+
+  /* Hero Section Mobile */
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 3rem 1.5rem;
+    gap: 2rem;
+    min-height: auto;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+  }
+
+  .hero-visual {
+    order: -1;
+    justify-content: center;
+  }
+
+  .hero-visual img {
+    max-width: 100%;
+    border-radius: 2rem;
+  }
+
+  /* App Container Mobile */
+  .app-container {
+    padding: 1.5rem 1rem;
+  }
+
+  /* Page Header Mobile */
+  .page-title {
+    font-size: 1.75rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.95rem;
+  }
+
+  /* Quick Stats Mobile */
+  .quick-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .quick-stat-card {
+    padding: 16px;
+  }
+
+  .quick-stat-value {
+    font-size: 24px;
+  }
+
+  .quick-stat-label {
+    font-size: 11px;
+  }
+
+  /* Tabs Mobile */
+  .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.5rem;
+  }
+
+  .tab-button {
+    white-space: nowrap;
+    font-size: 0.875rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  /* Cards Mobile */
+  .card {
+    padding: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.125rem;
+  }
+
+  /* ChatBot Mobile */
+  .chatbot-floating-button {
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .chatbot-window {
+    bottom: 85px;
+    right: 20px;
+    left: 20px;
+    width: auto;
+    max-width: calc(100vw - 40px);
+    height: 500px;
+  }
+
+  .chatbot-input-container {
+    padding: 12px;
+  }
+
+  .chatbot-input {
+    font-size: 16px;
+    /* Prevents zoom on iOS */
+  }
+}
+
+/* Small Mobile: 480px and below */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .quick-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .chatbot-window {
+    height: 450px;
+  }
+
+  .app-container {
+    padding: 1rem 0.75rem;
+  }
 }
