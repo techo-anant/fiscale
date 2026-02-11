@@ -75,7 +75,14 @@ export default function ChatBot() {
                     { role: "assistant", content: data.response },
                 ]);
             } else {
-                throw new Error("No response from API");
+                // API responded but returned no content — likely out of tokens
+                setMessages((prev) => [
+                    ...prev,
+                    {
+                        role: "assistant",
+                        content: "The assistant is currently unavailable due to insufficient API credits. Please try again later or contact support.",
+                    },
+                ]);
             }
         } catch (error) {
             console.error("Chat error:", error);
