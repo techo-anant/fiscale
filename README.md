@@ -1,259 +1,131 @@
-# StudentFinance - Complete Next.js App
+# Fiscale 💰
 
-## 🎯 100% Feature Complete!
+A complete student finance management app built with Next.js for Winhacks 2026. We built this to help students track expenses, manage budgets, calculate taxes, and estimate OSAP funding all in one place.
 
-This is a **COMPLETE 1:1 conversion** of your HTML file with ALL 1800 lines of functionality converted to modern Next.js!
+## What It Does
 
-### ✅ All Features Included
+This app has everything I needed as a student to manage my finances:
 
-#### 1. Quick Stats Dashboard (Top Cards)
-- Current Balance (live calculation)
-- Monthly Expenses  
-- Total Income
-- Savings Rate
+- **Quick Overview** - See your balance, expenses, income, and savings rate at a glance
+- **Expense Tracking** - Log expenses by category and watch where your money goes
+- **Income Management** - Track all your income sources
+- **Savings Goals** - Set goals and track your progress
+- **Tax Calculator** - Calculate Canadian taxes with support for all provinces
+- **OSAP Estimator** - Estimate your OSAP funding before you apply
 
-#### 2. Tab Navigation (6 Complete Tabs)
-- 📊 Dashboard - Fixed costs & available funds
-- 💳 Expenses - Full expense tracker
-- 💵 Income - Income tracking
-- 🎯 Goals - Savings goals with progress
-- 🧮 Tax Calculator - Complete Canadian tax calc
-- 🎓 OSAP - Full OSAP estimator + knowledge base
-
-#### 3. Dashboard Tab Features
-- **Monthly Fixed Costs Card**
-  - Rent
-  - Car Insurance
-  - Groceries
-  - Phone Bill
-  - Utilities
-  - Other Costs
-  - Real-time total calculation
-  
-- **Available Funds Calculator**
-  - Monthly income input
-  - Savings goal percentage (0-30%)
-  - Detailed breakdown showing:
-    - Income
-    - All fixed costs itemized
-    - Savings amount
-    - Available to spend
-  - Smart alerts (warning if negative, caution if <$200)
-  
-- **Budget Overview**
-  - Set monthly budget
-  - Track spending
-  - Progress bar
-  - Remaining amount
-
-- **Spending by Category**
-  - Visual breakdown
-  - Progress bars per category
-
-- **AI Financial Insights**
-  - Personalized tips based on your data
-  - Budget alerts
-  - Savings encouragement
-
-#### 4. Expenses Tab
-- Add expense form
-- 5 categories with color coding
-- Date tracking
-- Delete expenses
-- Recent expenses list
-- Category badges
-
-#### 5. Income Tab
-- Add income form
-- Source tracking
-- Date tracking
-- Delete income
-- Income history
-- Running total
-
-#### 6. Goals Tab
-- Create savings goals
-- Set target amounts
-- Track current savings
-- Target dates
-- Visual progress bars
-- Percentage complete
-- Amount remaining
-- Delete goals
-
-#### 7. Tax Calculator Tab (Complete!)
-- **T4 Information**
-  - Box 14 - Employment Income
-  - Box 22 - Tax Deducted
-  - Box 16 - CPP Contributions
-  - Box 18 - EI Premiums
-
-- **T2202 Tuition Information**
-  - Box A - Tuition Fees
-  - Study months selection
-
-- **Additional Info**
-  - All 10 Canadian provinces
-  - Other income
-  - Textbook credit option
-
-- **Complete Tax Breakdown**
-  - Income breakdown
-  - Federal tax calculation
-  - Provincial tax calculation
-  - All tax credits:
-    - Basic personal credit
-    - Tuition credit
-    - Education amount
-    - Textbook amount
-    - CPP credit
-    - EI credit
-  - Final calculation
-  - Refund or owing amount
-  - Unused tuition credits
-
-- **Tax Tips & Insights**
-  - Document retention advice
-  - Filing deadlines
-  - Free filing options
-  - CRA contact info
-
-#### 8. OSAP Tab (Complete!)
-- Student status selection
-- Study period configuration
-- Income & parental income
-- Tuition & books costs
-- Living arrangement
-- **Detailed Breakdown:**
-  - Total OSAP estimate
-  - Grant vs loan split
-  - Educational costs
-  - Student & parental contributions
-  - Monthly repayment estimate
-
-- **OSAP Knowledge Base:**
-  - Application timeline
-  - Grant vs loan info
-  - Eligibility requirements
-  - Funding limits
-  - Grace period details
-  - Required documents
-  - RAP information
-  - Important notes
-  - Official resources
-
-#### 9. Data Persistence
-All data saved in localStorage:
-- ✅ Expenses
-- ✅ Income
-- ✅ Goals
-- ✅ Monthly Budget
-- ✅ Fixed Costs
-- ✅ Monthly Income
-- ✅ Savings Percentage
-
-## 🚀 Quick Start
+## Getting Started
 
 ```bash
+# Clone the repo
+git clone https://github.com/techo-anant/fiscale.git
+
 # Install dependencies
 npm install
 
-# Run development server
+# Run it locally
 npm run dev
-
-# Open http://localhost:3000
 ```
 
-## 📁 Project Structure
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Features Breakdown
+
+### Dashboard
+The main dashboard shows your fixed monthly costs (rent, insurance, groceries, etc.) and calculates how much money you actually have available to spend after savings and bills. It also gives you budget insights and spending breakdowns by category.
+
+### Expenses Tab
+Add and track all your expenses. We included 5 main categories:
+- Food & Dining
+- Transportation
+- Entertainment
+- Shopping
+- Other
+
+Each expense shows up in a clean list with the date and category badge.
+
+### Income Tab
+Track all your income sources - whether it's from a part-time job, scholarships, or family support. The total income feeds into all the other calculations.
+
+### Goals Tab
+Set savings goals with target amounts and dates. The progress bars show you how close you are to hitting each goal.
+
+### Tax Calculator
+One of the most useful features we built. Enter your T4 and T2202 info and it calculates:
+- Federal and provincial taxes
+- All the student tax credits (tuition, education, textbook)
+- CPP and EI credits
+- Your refund or amount owing
+
+It works for all 10 Canadian provinces and saves you the headache of doing it manually.
+
+### OSAP Estimator
+Estimate your OSAP funding by entering:
+- Your student status and study period
+- Income (yours and your parents')
+- Tuition and book costs
+- Living situation
+
+The calculator breaks down grants vs loans and gives you a monthly repayment estimate.
+
+## Tech Stack
+
+- **Next.js 14** - Using the App Router
+- **React 18** - For the UI
+- **TypeScript** - Type safety throughout
+- **CSS3** - Custom styling, no UI libraries
+- **LocalStorage** - All your data stays on your device
+
+## Project Structure
 
 ```
-FINAL-student-finance-app/
-├── app/
-│   ├── layout.tsx          # Root layout
-│   ├── page.tsx            # Main app with state
-│   └── globals.css         # Complete styling
-├── components/
-│   ├── QuickStats.tsx      # Top 4 stat cards
-│   ├── TabNavigation.tsx   # 6-tab navigator
-│   ├── DashboardTab.tsx    # Fixed costs + Available funds
-│   ├── ExpensesTab.tsx     # Expense tracker
-│   ├── IncomeTab.tsx       # Income tracker
-│   ├── GoalsTab.tsx        # Savings goals
-│   ├── TaxTab.tsx          # Full tax calculator
-│   └── OSAPTab.tsx         # OSAP estimator
-├── utils/
-│   ├── calculations.ts     # OSAP calculations
-│   └── taxCalculations.ts  # Tax calculations
-├── hooks/
-│   └── useLocalStorage.ts  # LocalStorage hook
-├── types/
-│   └── index.ts            # TypeScript types
-├── package.json
-├── tsconfig.json
-├── next.config.js
-└── README.md
+app/
+├── page.tsx          # Main app logic
+├── layout.tsx        # Root layout
+└── globals.css       # All the styling
+
+components/
+├── QuickStats.tsx       # Top stat cards
+├── TabNavigation.tsx    # Tab switcher
+├── DashboardTab.tsx     # Fixed costs & available funds
+├── ExpensesTab.tsx      # Expense tracker
+├── IncomeTab.tsx        # Income tracker
+├── GoalsTab.tsx         # Savings goals
+├── TaxTab.tsx           # Tax calculator
+└── OSAPTab.tsx          # OSAP estimator
+
+utils/
+├── calculations.ts      # OSAP math
+└── taxCalculations.ts   # Tax math
+
+hooks/
+└── useLocalStorage.ts   # Data persistence
+
+types/
+└── index.ts             # TypeScript types
 ```
 
-## 🎨 Styling
+## Data Persistence
 
-**Exact match to your HTML:**
-- Dark gradient background (#1a1a2e to #16213e)
-- Glass-morphism cards
-- Teal accent color (#4fd1c5)
-- Smooth animations & transitions
-- Responsive grid layouts
-- Category color coding
-- Progress bars
-- Hover effects
-- Empty states
+Everything you enter is saved to your browser's localStorage, so your data persists between sessions. Nothing gets sent to a server - it all stays local.
 
-## 💾 Features Comparison
+## Important Notes
 
-| Feature | HTML | Next.js |
-|---------|------|---------|
-| Quick Stats | ✅ | ✅ |
-| Tab Navigation | ✅ | ✅ |
-| Fixed Costs | ✅ | ✅ |
-| Available Funds | ✅ | ✅ |
-| Expense Tracker | ✅ | ✅ |
-| Income Tracker | ✅ | ✅ |
-| Savings Goals | ✅ | ✅ |
-| Tax Calculator | ✅ | ✅ |
-| OSAP Estimator | ✅ | ✅ |
-| LocalStorage | ✅ | ✅ |
-| All Provinces | ✅ | ✅ |
-| Tax Credits | ✅ | ✅ |
-| OSAP Knowledge | ✅ | ✅ |
-| **Total Features** | **100%** | **100%** |
+- The tax calculations are estimates based on 2024 rates. Always file your actual taxes through CRA or a tax professional.
+- OSAP estimates are just that - estimates. Apply through the official OSAP website for real funding amounts.
+- All data is stored locally in your browser. Clear your browser data and you'll lose it.
 
-## 🛠️ Built With
+## Contributing
 
-- Next.js 14 (App Router)
-- React 18
-- TypeScript
-- CSS3 (No dependencies!)
-- LocalStorage API
+Feel free to open issues or submit PRs if you find bugs or want to add features.
 
-## 📝 Notes
+## The Team
 
-- All calculations match your HTML exactly
-- Tax rates for all 10 Canadian provinces
-- OSAP calculations are estimates
-- File your actual taxes with CRA
-- Apply for real OSAP at ontario.ca/osap
+Built by a team of 4 for Winhacks 2026.
 
-## 🎉 What's New in Next.js Version
+## License
 
-- ✅ Component-based architecture
-- ✅ TypeScript for type safety
-- ✅ Proper state management
-- ✅ Reusable components
-- ✅ Better code organization
-- ✅ Production-ready
-- ✅ Easy to maintain & extend
+MIT
 
 ---
 
-**All 1800 lines of HTML converted to modern, maintainable Next.js!**
-
-Enjoy your new app! 🎓💰
+Built to help students manage their finances better. Hope it helps! 🎓
